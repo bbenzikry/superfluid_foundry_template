@@ -10,7 +10,7 @@ NOTE: You will need yarn (or npm) and foundry to use this project.
 To get started, clone this repo:
 
 ```bash
-git clone __TODO__
+git clone https://github.com/Fluid-X/superfluid_foundry_template
 ```
 
 Next, install dependencies. At the time of writing, Superfluid _MUST_ be installed as node modules.

@@ -57,7 +57,7 @@ contract YourTestContractNameHere {
     Superfluid internal host;
     ConstantFlowAgreementV1 internal cfa;
     InstantDistributionAgreementV1 internal ida;
-    SuperTokenFactory superTokenFactory;
+    SuperTokenFactory internal superTokenFactory;
 
     function setUp() public {
 

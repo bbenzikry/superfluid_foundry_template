@@ -1,0 +1,10 @@
+[default]
+src = 'src'
+out = 'out'
+libs = ['lib', 'node_modules']
+remappings = ['ds-test/=lib/ds-test/src/']
+libraries = [
+	'@superfluid-finance/ethereum-contracts/contracts/agreements/InstantDistributionAgreementV1.sol:SlotsBitmapLibrary:0x0101010101010101010101010101010101010101'
+]
+
+# See more config options https://github.com/gakonst/foundry/tree/master/config

@@ -136,6 +136,8 @@ contract SuperfluidFramework {
             new address[](0),
             address(superTokenFactory)
         );
+
+	vm.stopPrank();
     }
 
     /// @notice Fetches the framework contracts

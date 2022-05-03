@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 
 import {Vm} from "forge-std/Vm.sol";
+import {DSTest} from "ds-test/test.sol";
 import {IERC1820Registry} from "@openzeppelin/contracts/utils/introspection/IERC1820Registry.sol";
 import {
     Superfluid,
@@ -17,7 +18,7 @@ import "@superfluid-finance/ethereum-contracts/contracts/apps/IDAv1Library.sol";
 /// @title Superfluid Framework
 /// @author jtriley.eth
 /// @notice This is NOT for deploying public nets, but rather only for tesing envs
-contract SuperfluidFramework {
+contract SuperfluidTester is DSTest {
 
     SuperfluidFrameworkDeployer internal immutable sfDeployer;
 

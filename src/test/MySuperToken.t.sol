@@ -1,29 +1,28 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-import {DSTest} from "ds-test/test.sol";
 import {Vm} from "forge-std/Vm.sol";
 import {
-    SuperfluidFramework,
+    SuperfluidTester,
     Superfluid,
     ConstantFlowAgreementV1,
+    CFAv1Library,
     SuperTokenFactory
-} from "./SuperfluidFramework.t.sol";
+} from "./SuperfluidTester.sol";
 import {IMySuperToken} from "../interfaces/IMySuperToken.sol";
 import {MySuperToken} from "../MySuperToken.sol";
 
 /// @title Example Super Token Test
 /// @author jtriley.eth
 /// @notice For demonstration only. You can delete this file.
-contract MySuperTokenTest is DSTest {
+contract MySuperTokenTest is SuperfluidTester {
+
+    using CFAv1Library for CFAv1Library.InitData;
 
     /// @dev VM for cheats `address(bytes20(uint160(uint256(keccak256('hevm cheat code')))))`
     Vm private vm = Vm(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
 
     /// @dev Superfluid contracts to use
-    Superfluid internal host;
-    ConstantFlowAgreementV1 internal cfa;
-    SuperTokenFactory internal superTokenFactory;
 
     /// @dev Example Super Token to test
     IMySuperToken internal token;
@@ -33,10 +32,11 @@ contract MySuperTokenTest is DSTest {
     address internal constant admin = address(1);
     address internal constant someOtherPerson = address(2);
 
-    function setUp() public {
-        // Deploy and retrieve contracts using `vm` and `admin`. The admin deploys everything.
-        (host, cfa, , superTokenFactory) = new SuperfluidFramework(vm, admin).framework();
+    constructor() SuperfluidTester(vm, admin) {
+        
+    }
 
+    function setUp() public {
         // NOTE: If you're copy-pasting this for your own test, you can safely delete the rest of
         // this function :)
 
@@ -76,16 +76,10 @@ contract MySuperTokenTest is DSTest {
         vm.warp(0);
         vm.startPrank(admin);
 
-        host.callAgreement(
-            cfa,
-            abi.encodeWithSelector(
-                cfa.createFlow.selector,
-                token,
-                someOtherPerson,
-                1e18, // flowRate
-                new bytes(0)
-            ),
-            new bytes(0)
+        cfaLib.flow(
+            someOtherPerson,
+            token,
+            1e18 // flowRate
         );
 
         (, int96 flowRate, , ) = cfa.getFlow(

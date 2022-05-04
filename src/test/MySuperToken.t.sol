@@ -17,6 +17,7 @@ import {MySuperToken} from "../MySuperToken.sol";
 /// @notice For demonstration only. You can delete this file.
 contract MySuperTokenTest is SuperfluidTester {
 
+    /// @dev This is required by solidity for using the CFAv1Library in the tester
     using CFAv1Library for CFAv1Library.InitData;
 
     /// @dev VM for cheats `address(bytes20(uint160(uint256(keccak256('hevm cheat code')))))`

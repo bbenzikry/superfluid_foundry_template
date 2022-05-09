@@ -48,7 +48,7 @@ contract MySuperTokenTest is SuperfluidTester {
         token = IMySuperToken(address(new MySuperToken()));
 
         // Upgrade MySuperToken with the SuperTokenFactory
-        superTokenFactory.initializeCustomSuperToken(address(token));
+        sf.superTokenFactory.initializeCustomSuperToken(address(token));
 
         // initialize MySuperToken
         token.initialize("Super Mega Token", "SMT", initialSupply);
@@ -77,13 +77,13 @@ contract MySuperTokenTest is SuperfluidTester {
         vm.warp(0);
         vm.startPrank(admin);
 
-        cfaLib.flow(
+        sf.cfaLib.flow(
             someOtherPerson,
             token,
             1e18 // flowRate
         );
 
-        (, int96 flowRate, , ) = cfa.getFlow(
+        (, int96 flowRate, , ) = sf.cfa.getFlow(
             token,
             admin,
             someOtherPerson

@@ -4,7 +4,7 @@ out = 'out'
 libs = ['lib']
 remappings = [
     'ds-test/=lib/ds-test/src/',
-    '@superfluid-finance/=node_modules/@superfluid-finance',
+    '@superfluid-finance/=node_modules/@superfluid-finance/ethereum-contracts/',
     '@openzeppelin/=node_modules/@openzeppelin/',
 ]
 # See more config options https://github.com/gakonst/foundry/tree/master/config

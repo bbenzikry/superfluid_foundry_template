@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-import {Vm} from "forge-std/Vm.sol";
 import {
     SuperfluidTester,
     Superfluid,
@@ -20,11 +19,6 @@ contract MySuperTokenTest is SuperfluidTester {
     /// @dev This is required by solidity for using the CFAv1Library in the tester
     using CFAv1Library for CFAv1Library.InitData;
 
-    /// @dev VM for cheats `address(bytes20(uint160(uint256(keccak256('hevm cheat code')))))`
-    Vm private vm = Vm(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
-
-    /// @dev Superfluid contracts to use
-
     /// @dev Example Super Token to test
     IMySuperToken internal token;
 
@@ -33,9 +27,7 @@ contract MySuperTokenTest is SuperfluidTester {
     address internal constant admin = address(1);
     address internal constant someOtherPerson = address(2);
 
-    constructor() SuperfluidTester(vm, admin) {
-        
-    }
+    constructor() SuperfluidTester(admin) {}
 
     function setUp() public {
         // NOTE: If you're copy-pasting this for your own test, you can safely delete the rest of
